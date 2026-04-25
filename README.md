@@ -1,36 +1,38 @@
-# ASIAN_PAINTS_VALUATION_ENGINE 
+# ASIAN_PAINTS_VALUATION_ENGINE_V2
 
-## SYSTEM_OVERVIEW
-A high-fidelity financial modeling repository focused on the intrinsic valuation of Asian Paints Ltd. The project implements a three-stage Discounted Cash Flow (DCF) framework, integrating automated historical normalization, peer-group risk assessment, and fundamental growth forecasting.
+## PROJECT_DOCUMENTATION
+This repository contains a high-fidelity fundamental analysis and intrinsic valuation framework for Asian Paints Ltd. The engine utilizes a three-stage Discounted Cash Flow (DCF) methodology to derive equity value independent of market volatility, integrating multi-year historical normalization with forward-looking risk assessments.
 
-### ARCHITECTURE_LOGIC
-- **VALUATION_METHOD:** Free Cash Flow to Firm (FCFF)
-- **TAX_LOGIC:** Marginal tax rate integration for NOPAT calculation
-- **GROWTH_ENGINE:** ROIC (Return on Invested Capital) coupled with fundamental Reinvestment Rates
-- **RISK_MODEL:** CAPM-based WACC utilizing bottom-up levered beta analysis
-
----
-
-## EXECUTION_RESULTS
-
-* **VALUATION_DELTA_ANALYSIS:** The model identifies a significant variance between fundamental value and market pricing. The calculated intrinsic value of **INR 622.19** per share represents a **75.25% discount** to the current market price of **INR 2,514**. This quantifies a market premium of **4.04x**, suggesting the current stock price is pricing in aggressive terminal growth expectations far exceeding the risk-free rate.
-
-* **CAPITAL_STRUCTURE_RECONCILIATION:** Developed a granular debt-to-equity bridge by isolating **INR 1,427 Cr in Lease Liabilities** (Ind AS 116) from **INR 864 Cr in core Financial Borrowings**. By specifically mapping these obligations, the model ensures that the transition from Enterprise Value to Equity Value is mathematically accurate, preventing the overstatement of shareholder value common in simplified models.
+### ANALYTICAL_ARCHITECTURE
+- **Valuation Methodology:** Free Cash Flow to Firm (FCFF) utilizing a 5-year explicit forecast horizon and a terminal value stage based on the perpetuity growth model.
+- **WACC Framework:** Weighted Average Cost of Capital calculated at **13.91%**, derived from a bottom-up levered beta approach, a risk-free rate ($Rf$) of 6.93%, and localized equity risk premiums.
+- **Intrinsic Growth Engine:** Forecasting is driven by the fundamental relationship between **ROIC (Return on Invested Capital)** and the **Reinvestment Rate**, ensuring growth projections are mathematically constrained by capital allocation efficiency.
+- **Equity Bridge Logic:** Enterprise Value (EV) is adjusted for a complex debt stack (including lease liabilities under Ind AS 116) and cash equivalents to arrive at a precise net equity value per share.
 
 ---
 
-## SENSITIVITY_MATRIX (DATA_TABLE)
+## QUANTIFIABLE_ANALYSIS_READING
 
-| WACC / g | 6.0% | 6.5% | 6.93% (Rf) |
+* **INTRINSIC_VALUATION_GAP:** The model identifies a significant variance between fundamental support and market pricing. The calculated intrinsic value of **INR 622.19** per share, when mapped against the current market price of **INR 2,514**, reveals a **75.25% valuation gap**. This quantifies a market premium of **4.04x** over the base-case fundamental value, indicating that current market pricing necessitates an implied growth trajectory significantly higher than the company's historical reinvestment capacity.
+
+* **CAPITAL_STRUCTURE_DYNAMICS:** The model reconciles a total debt-equivalent load of **INR 3,557 Cr**—reconciling **INR 1,427 Cr in lease liabilities** against **INR 864 Cr in core financial borrowings**. By integrating these liabilities into the WACC and the Enterprise-to-Equity bridge, the engine maintains a strict 1:1 deduction ratio, ensuring that the valuation of equity holders is not overstated by the omission of off-balance-sheet financing.
+
+---
+
+## SENSITIVITY_MODEL_OUTPUT
+
+The following matrix illustrates the stability of the per-share intrinsic value (INR) relative to shifts in the discount rate and terminal growth assumptions.
+
+| WACC / g | 6.00% | 6.50% | 6.93% (Rf) |
 | :--- | :--- | :--- | :--- |
-| **13.0%** | 654.21 | 701.33 | 745.89 |
-| **13.9% (Baseline)** | 552.45 | 589.12 | **622.19** |
-| **15.0%** | 461.90 | 489.24 | 514.56 |
+| **13.00%** | 654.21 | 701.33 | 745.89 |
+| **13.91% (Baseline)** | 552.45 | 589.12 | **622.19** |
+| **15.00%** | 461.90 | 489.24 | 514.56 |
 
 ---
 
 ## REPOSITORY_TREE
-- `/core_model`: Integrated DCF and forecasting logic.
-- `/risk_assessment`: WACC calculation and beta de-levering.
-- `/historical_data`: 10-year normalized financial statements.
-- `/documentation`: Research notes and sensitivity analysis.
+- `/core_engine`: Integrated DCF forecasting and FCFF calculation modules.
+- `/risk_assessment`: Bottom-up beta de-levering and WACC calculation framework.
+- `/fundamental_growth`: ROIC and Reinvestment Rate historical analysis.
+- `/historical_data`: 10-year normalized financial statements and peer comparisons.
