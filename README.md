@@ -1,63 +1,36 @@
-# DCF Valuation Model – Asian Paints
+# ASIAN_PAINTS_VALUATION_ENGINE 
 
-## Overview
-This project presents a Discounted Cash Flow (DCF) valuation of Asian Paints to estimate its intrinsic value based on projected free cash flows. The model integrates financial statement analysis, growth assumptions, and cost of capital estimation to evaluate valuation relative to market price.
+## SYSTEM_OVERVIEW
+A high-fidelity financial modeling repository focused on the intrinsic valuation of Asian Paints Ltd. The project implements a three-stage Discounted Cash Flow (DCF) framework, integrating automated historical normalization, peer-group risk assessment, and fundamental growth forecasting.
 
----
-
-## Objective
-- Estimate intrinsic value using a structured DCF framework  
-- Assess whether the stock is overvalued or undervalued  
-- Understand key value drivers: growth, margins, reinvestment, and cost of capital  
-
----
-
-## Model Structure
-1. Historical Financial Analysis  
-2. Revenue & Margin Forecasting  
-3. Reinvestment Estimation (Capex + Working Capital)  
-4. Free Cash Flow to Firm (FCFF) Calculation  
-5. Cost of Capital (WACC) Estimation  
-6. Terminal Value (Perpetual Growth Method)  
-7. Intrinsic Value Calculation & Comparison  
+### ARCHITECTURE_LOGIC
+- **VALUATION_METHOD:** Free Cash Flow to Firm (FCFF)
+- **TAX_LOGIC:** Marginal tax rate integration for NOPAT calculation
+- **GROWTH_ENGINE:** ROIC (Return on Invested Capital) coupled with fundamental Reinvestment Rates
+- **RISK_MODEL:** CAPM-based WACC utilizing bottom-up levered beta analysis
 
 ---
 
-## Key Assumptions
-- Revenue growth based on historical trends and industry outlook  
-- Stable operating margins over the forecast period  
-- Reinvestment rate derived from business requirements  
-- Terminal growth aligned with long-term economic expectations  
-- Marginal tax rate applied for NOPAT calculation  
+## EXECUTION_RESULTS
+
+* **VALUATION_DELTA_ANALYSIS:** The model identifies a significant variance between fundamental value and market pricing. The calculated intrinsic value of **INR 622.19** per share represents a **75.25% discount** to the current market price of **INR 2,514**. This quantifies a market premium of **4.04x**, suggesting the current stock price is pricing in aggressive terminal growth expectations far exceeding the risk-free rate.
+
+* **CAPITAL_STRUCTURE_RECONCILIATION:** Developed a granular debt-to-equity bridge by isolating **INR 1,427 Cr in Lease Liabilities** (Ind AS 116) from **INR 864 Cr in core Financial Borrowings**. By specifically mapping these obligations, the model ensures that the transition from Enterprise Value to Equity Value is mathematically accurate, preventing the overstatement of shareholder value common in simplified models.
 
 ---
 
-## Valuation Methodology
+## SENSITIVITY_MATRIX (DATA_TABLE)
 
-FCFF = EBIT × (1 - Tax) + Depreciation - Capex - Change in Working Capital  
-
-DCF Value = Sum of (FCFF / (1 + WACC)^t) + Terminal Value  
-
----
-
-## Tools Used
-- Microsoft Excel  
-- Annual Reports & Public Financial Data  
-- Financial Modeling Techniques  
+| WACC / g | 6.0% | 6.5% | 6.93% (Rf) |
+| :--- | :--- | :--- | :--- |
+| **13.0%** | 654.21 | 701.33 | 745.89 |
+| **13.9% (Baseline)** | 552.45 | 589.12 | **622.19** |
+| **15.0%** | 461.90 | 489.24 | 514.56 |
 
 ---
 
-## Output
-- Intrinsic value estimate  
-- Sensitivity to WACC and growth assumptions  
-- Comparison with current market price  
-
----
-
-## Disclaimer
-This project is for educational purposes only and does not constitute investment advice.
-
----
-
-## Author
-Ram Vasudev
+## REPOSITORY_TREE
+- `/core_model`: Integrated DCF and forecasting logic.
+- `/risk_assessment`: WACC calculation and beta de-levering.
+- `/historical_data`: 10-year normalized financial statements.
+- `/documentation`: Research notes and sensitivity analysis.
